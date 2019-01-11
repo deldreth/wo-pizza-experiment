@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import { connect } from "react-redux";
-import styled from "styled-components";
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import { toggleTopping, removePizza } from "./redux/actions";
+import { toggleTopping, removePizza } from './redux/actions';
 
 function Pizza(props) {
   const max = totalSelected(props.pizza.toppings);
@@ -64,7 +64,7 @@ function totalCost(basePrice, toppings) {
 function mapDispatch(dispatch) {
   return {
     toggleTopping: (index, name) => dispatch(toggleTopping(index, name)),
-    removePizza: (index) => dispatch(removePizza(index))
+    removePizza: index => dispatch(removePizza(index)),
   };
 }
 
@@ -73,12 +73,12 @@ export default connect(
   mapDispatch
 )(Pizza);
 
-const Topping = styled("label")`
+const Topping = styled('label')`
   display: block;
   opacity: ${props => (!props.disabled ? 1 : 0.5)};
 `;
 
-const Total = styled("h3")`
+const Total = styled('h3')`
   text-align: right;
 `;
 

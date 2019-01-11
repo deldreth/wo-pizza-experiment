@@ -1,14 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
-import {
-  QUERY_PIZZA_SIZES,
-} from "./graphql/queries";
+import { QUERY_PIZZA_SIZES } from './graphql/queries';
 import { asyncAddPizza } from './redux/actions';
-
 
 class PizzaList extends Component {
   render() {
@@ -16,11 +13,11 @@ class PizzaList extends Component {
       <Query query={QUERY_PIZZA_SIZES}>
         {({ data, loading, error }) => {
           if (loading) {
-            return "...";
+            return '...';
           }
 
           if (error || !data) {
-            return "...";
+            return '...';
           }
 
           return (
@@ -50,18 +47,21 @@ function mapState(state) {
 
 function mapDispatch(dispatch) {
   return {
-    addPizza: (name) => dispatch(asyncAddPizza(name))
-  }
+    addPizza: name => dispatch(asyncAddPizza(name)),
+  };
 }
 
-export default connect(mapState, mapDispatch)(PizzaList);
+export default connect(
+  mapState,
+  mapDispatch
+)(PizzaList);
 
 export const Container = styled('section').attrs({
-  className: 'nes-container with-title'
+  className: 'nes-container with-title',
 })``;
 
 export const Button = styled('button').attrs({
-  className: 'nes-btn'
+  className: 'nes-btn',
 })`
   margin: 0px 5px;
 `;

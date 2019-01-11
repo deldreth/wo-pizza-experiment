@@ -1,4 +1,4 @@
-import { ADD_PIZZA, REMOVE_PIZZA, TOGGLE_TOPPING } from "./actions";
+import { ADD_PIZZA, REMOVE_PIZZA, TOGGLE_TOPPING } from './actions';
 
 export const initialState = [];
 
@@ -14,16 +14,16 @@ export default function pizzas(state = initialState, action) {
             if (topping.defaultSelected) {
               return {
                 ...topping,
-                selected: true
+                selected: true,
               };
             }
 
             return {
               ...topping,
-              selected: false
+              selected: false,
             };
-          })
-        }
+          }),
+        },
       ];
     case REMOVE_PIZZA:
       return state.filter((pizza, index) => index !== action.payload.index);
@@ -36,12 +36,12 @@ export default function pizzas(state = initialState, action) {
               if (topping.topping.name === action.payload.name) {
                 return {
                   ...topping,
-                  selected: !topping.selected
+                  selected: !topping.selected,
                 };
               }
 
               return topping;
-            })
+            }),
           };
         }
 
