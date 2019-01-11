@@ -12,7 +12,9 @@ function Cart(props) {
         <p className="title">Pizzas</p>
 
         <Container>
-          {props.pizzas.length === 0 && 'Pick a size to get started'}
+          {props.pizzas.length === 0 && (
+            'Pick a size'
+          )}
 
           {props.pizzas.map((pizza, index) => (
             <Pizza key={index} pizza={pizza} id={index} />
@@ -47,8 +49,20 @@ function mapState(state) {
 export default connect(mapState)(Cart);
 
 const Container = styled('section')`
-  display: flex;
-  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+
+  @media only screen and (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media only screen and (min-width: 1399px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
 
 const Total = styled('h1')`

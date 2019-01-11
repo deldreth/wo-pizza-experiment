@@ -10,38 +10,36 @@ function Pizza(props) {
 
   return (
     <article className="nes-container">
-      <div>
-        <Icon onClick={() => props.removePizza(props.id)} />
-        <h2>{props.pizza.name}</h2>
+      <Icon onClick={() => props.removePizza(props.id)} />
 
-        <h3>Toppings:</h3>
-        <form>
-          {props.pizza.toppings.map(({ topping, selected }) => (
-            <Topping
-              key={topping.name}
-              disabled={max === props.pizza.maxToppings && !selected}
-            >
-              <input
-                type="checkbox"
-                className="nes-checkbox"
-                onChange={() => {
-                  if (!props.pizza.maxToppings) {
-                    props.toggleTopping(props.id, topping.name);
-                  }
+      <h2>{props.pizza.name}</h2>
 
-                  if (max < props.pizza.maxToppings || selected) {
-                    props.toggleTopping(props.id, topping.name);
-                  }
-                }}
-                checked={selected}
-              />
-              <span>{topping.name}</span>
-            </Topping>
-          ))}
-        </form>
+      <h3>Toppings:</h3>
+      <form>
+        {props.pizza.toppings.map(({ topping, selected }) => (
+          <Topping
+            key={topping.name}
+            disabled={max === props.pizza.maxToppings && !selected}
+          >
+            <input
+              type="checkbox"
+              className="nes-checkbox"
+              onChange={() => {
+                if (
+                  !props.pizza.maxToppings ||
+                  (max < props.pizza.maxToppings || selected)
+                ) {
+                  props.toggleTopping(props.id, topping.name);
+                }
+              }}
+              checked={selected}
+            />
+            <span>{topping.name}</span>
+          </Topping>
+        ))}
+      </form>
 
-        <Total>${totalCost(props.pizza.basePrice, props.pizza.toppings)}</Total>
-      </div>
+      <Total>${totalCost(props.pizza.basePrice, props.pizza.toppings)}</Total>
     </article>
   );
 }
